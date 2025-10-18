@@ -20,10 +20,10 @@ bcryptjs
 pg
  — Conexão com PostgreSQL
 
- Instale as dependências
+💻 Instale as dependências
 
  npm install pg 
 
  npm install bcryptjs
 
-npm install electron --save-dev
+ npm install electron --save-dev
