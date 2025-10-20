@@ -1,4 +1,5 @@
 const form = document.querySelector('.login-form');
+const cadastro = document.querySelector('.cadastro-form');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -19,3 +20,4 @@ form.addEventListener('submit', async (e) => {
         //alert('Erro ao tentar logar')
     }
 })
+

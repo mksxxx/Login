@@ -12,17 +12,12 @@ async function createUser(nome, password, email, nivel) {
         );
 
         console.log(`Usuario "${email}" criado com sucesso!`);
+        return { success: true}
     } catch (err){
         console.error('Erro ao criar usuário: ', err.message) ;
-    } finally{
-        }    
+         return { success: false, error: err.message };
+    } 
 }
 
-const args = process.argv.slice(2);
-if(args.length < 2) {
-    console.log('Us: node criarUsuario.js <nome> <senha> [email] [nivel] ');
-    process.exit(1);
-}
 
-const [nome, senha, email, nivel] = args;
-createUser(nome, senha, email, nivel ? parseInt(nivel) : 1);
+module.exports = { createUser };
