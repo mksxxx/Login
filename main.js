@@ -2,6 +2,7 @@ console.log('Hello from Electron!');
 const path = require('path')
 const { app, BrowserWindow, ipcMain } = require('electron');
 const { login } = require('./js/auth');
+const { createUser } = require('./js/createUser')
 
 
 
@@ -9,6 +10,11 @@ let mainWindow
 
 ipcMain.handle('login', async (event, email, password) => {
     return await login(email, password); 
+});
+
+ipcMain.handle('cadastrar-usuario', async (event, dados) => {
+    const { nome, email, password, nivel } = dados;
+    return await createUser(nome, password, email, nivel);
 });
 
 
@@ -42,9 +48,23 @@ function abrirNovaJanela() {
         }
     });
 
-    homeWindow.loadFile('views/home.html');
+    homeWindow.loadFile('views/create.html');
 }
+/*
+function abrirCadastro() {
+    const cadastroWindow = new BrowserWindow({
+        width: 600,
+        height: 500,
+        webPreferences: {
+            nodeIntegration: false,
+            contextIsolation: true,
+            preload: path.join(__dirname, 'js', 'preload.js')
+        }
+    });
 
+    cadastroWindow.loadFile('views/create.html');
+}
+*/
 ipcMain.on('abrir-home', () => {
     abrirNovaJanela();
 })

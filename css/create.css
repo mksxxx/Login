@@ -8,40 +8,40 @@
     --button-color: #1807b0;
 }
 
-
 body {
     font-family: "Poppins", sans-serif;
-     background-color: var(--background);
+    background-color: var(--background);
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
-.login-form {
+.cadastro-form {
     background-color: var(--background-login);
     padding: 40px 50px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
+    width: 380px;
     text-align: center;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     color: var(--text-color);
 }
 
-.form-group {
+.label-group {
     display: flex;
     align-items: center;
     margin-bottom: 25px;
 }
 
-.form-group label {
+.label-group label {
     width: 100px;
     color: var(--label-color);
     font-size: 14px;
+    text-align: left;
 }
 
 .input-container {
@@ -49,7 +49,7 @@ h2 {
     flex: 1;
 }
 
-.form-group input {
+.input-container input {
     width: 100%;
     border: none;
     outline: none;
@@ -57,12 +57,12 @@ h2 {
     font-size: 15px;
     color: var(--text-color);
     border-bottom: 2px solid #ccc;
-     transition: border-color 0.5s ease;
+    transition: border-color 0.5s ease;
 }
 
-.form-group input:focus {
-    border-bottom: 2px solid #4CAF50;
- }
+.input-container input:focus {
+    border-bottom: 2px solid var(--button-color);
+}
 
 .underline {
     position: absolute;
@@ -72,25 +72,48 @@ h2 {
     height: 2px;
     background-color: var(--button-color);
     transition: width 0.3s ease;
-   }
+}
 
-input:focus+.underline {
+.input-container input:focus + .underline {
     width: 100%;
+}
+
+label[for="nivel"] {
+    display: block;
+    text-align: left;
+    color: var(--label-color);
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 15px;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+select:focus {
+    border-color: var(--button-color);
 }
 
 button {
     width: 100%;
-   background-color: var(--button-color);
+    background-color: var(--button-color);
     color: white;
     border: none;
     padding: 12px;
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.5s ease;
+    transition: background-color 0.3s ease;
 }
 
-
 button:hover {
-    background-color: var(--button-color);
+    background-color: #0f0580;
 }
