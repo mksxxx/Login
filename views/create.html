@@ -11,25 +11,42 @@
 
 <body>
     <form class="cadastro-form">
+
         <h2>Cadastro Usuario</h2>
-        <div class="label-group"> <label for="username">Nome: </label>
-            <div class="input-container"> <input type="text" name="username" id="username" placeholder="username"
-                    required> <span class="underline"></span> </div>
+
+        <div class="label-group">
+            <label for="username">Nome: </label>
+            <div class="input-container"> <input type="text" name="username" id="username" placeholder="Nome Completo"
+                    required>
+                <span class="underline"></span>
+            </div>
         </div>
-        <div class="label-group"> <label for="email">Email:</label>
-            <div class="input-container"> <input type="email" name="email" id="email" placeholder="email" required>
-                <span class="underline"></span> </div>
+
+        <div class="label-group">
+            <label for="email">Email:</label>
+            <div class="input-container"> <input type="email" name="email" id="email" placeholder="Email" required>
+                <span class="underline"></span>
+            </div>
         </div>
-        <div class="label-group"> <label for="password">Senha: </label>
+
+        <div class="label-group">
+            <label for="password">Senha: </label>
             <div class="input-container"> <input type="password" name="password" id="password"
-                    placeholder="Digite sua senha" required> <span class="underline"></span> </div>
-        </div> <label for="nivel">Nivel: </label> <select name="nivel" id="nivel">
+                    placeholder="Digite sua senha" required>
+                <span class="underline"></span>
+            </div>
+
+        </div>
+
+        <label for="nivel">Nivel: </label> <select name="nivel" id="nivel">
             <option value="0" selected>Aluno</option>
             <option value="1">Administrador</option>
-        </select> <button type="submit">Cadastrar</button>
+        </select>
+        <button type="submit" class="cadasBtn">Cadastrar</button>
+        <button type="button" onclick="cancelarCadastro()" class="cancelBtn">Cancelar</button>
     </form>
-
     <script src="../js/user.js"></script>
+
 </body>
 
 </html>
