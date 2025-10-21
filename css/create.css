@@ -6,6 +6,7 @@
     --text-color: #333;
     --label-color: #777;
     --button-color: #1807b0;
+    --Cancel-btn-color: #c20909;
 }
 
 body {
@@ -102,7 +103,7 @@ select:focus {
     border-color: var(--button-color);
 }
 
-button {
+.cadasBtn {
     width: 100%;
     background-color: var(--button-color);
     color: white;
@@ -114,6 +115,21 @@ button {
     transition: background-color 0.3s ease;
 }
 
-button:hover {
+.cadasBtn:hover {
     background-color: #0f0580;
 }
+
+.cancelBtn{
+    width: 100%;
+    background-color: var(--Cancel-btn-color);
+    color: white;
+    border: none;
+    margin-top: 15px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
