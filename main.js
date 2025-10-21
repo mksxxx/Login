@@ -9,6 +9,7 @@ const { createUser } = require('./js/createUser')
 let mainWindow
 let homeWindow = null
 let usuarioLogado = null
+let cadastroWindow = null
 
 ipcMain.handle('login', async (event, email, password) => {
 
@@ -30,20 +31,34 @@ ipcMain.handle('cadastrar-usuario', async (event, dados) => {
 });
 
 ipcMain.on('logout', () => {
-        usuarioLogado = null;
-        if (homeWindow) {
-            homeWindow.close();
-            homeWindow = null; // Garante que a referência é limpa
-        }
-        if (!mainWindow) {
-            createWindow();
-        }
-    });
+    usuarioLogado = null;
+    if (homeWindow) {
+        homeWindow.close();
+        homeWindow = null;
+    }
+    if (!mainWindow) {
+        createWindow();
+    }
+});
+
+ipcMain.on('abrir-cadastro', (event) => {
+    if (usuarioLogado && usuarioLogado.nivel === 1) {
+        abrirCadastro();
+    } else {
+        console.warn('Tentativa de acesso não autorizada à tela de Cadastro.');
+    }
+});
+
+ipcMain.on('fechar-cadastro', () => {
+    if (cadastroWindow) {
+        cadastroWindow.close();
+    }
+});
 
 
 function createWindow() {
     mainWindow = new BrowserWindow({
-        /*fullscreen: true,*/
+
         width: 800,
         height: 600,
         webPreferences: {
@@ -65,7 +80,6 @@ function createWindow() {
 
 function abrirNovaJanela() {
     homeWindow = new BrowserWindow({
-        /*fullscreen: true,*/
         width: 800,
         height: 600,
         webPreferences: {
@@ -83,11 +97,11 @@ function abrirNovaJanela() {
     });
 
 }
-/*
+
 function abrirCadastro() {
-    const cadastroWindow = new BrowserWindow({
-        width: 600,
-        height: 500,
+    cadastroWindow = new BrowserWindow({
+        width: 800,
+        height: 600,
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
@@ -96,8 +110,12 @@ function abrirCadastro() {
     });
 
     cadastroWindow.loadFile('views/create.html');
+    cadastroWindow.maximize();
+
+    cadastroWindow.on('closed', () => {
+        cadastroWindow = null;
+    });
 }
-*/
 ipcMain.on('abrir-home', () => {
     abrirNovaJanela();
 
