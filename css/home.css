@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+:root {
+  --background: #f8f8f8;
+  --sidebar: #fff;
+  --icon-color: #222;
+  --icon-hover: #1807b0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--background);
+}
+
+/* MENU LATERAL FIXO */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 90px;
+  background: var(--sidebar);
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* CONTAINER DE ÍCONES */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 30px;
+}
+
+/* LINKS */
+nav a {
+  color: var(--icon-color);
+  font-size: 22px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--icon-hover);
+  transform: scale(1.15);
+}
+
+/* BOTÃO SAIR */
+.logout {
+  margin-bottom: 25px;
+}
+
+#logoutBtn {
+    background: none;
+    border: none;
+    cursor: pointer; 
+    padding: 10px; 
+    margin: 5px; 
+    transition: color 0.3s ease;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+
+#logoutBtn i.fa {
+    font-size: 20px;
+    color: #495057; 
+}
+
+
+#logoutBtn:hover {
+    color: var(--icon-hover);
+}
+
+
+#logoutBtn:hover i.fa {
+    color: var(--icon-hover); 
+}
+
+
+#logoutBtn:active {
+    opacity: 0.8;
+}
+
+
+.content {
+  margin-left: 90px; 
+  padding: 40px;
+}
+
+.content h1 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.content p {
+  color: #333;
+  font-size: 1rem;
+}
