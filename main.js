@@ -7,19 +7,43 @@ const { createUser } = require('./js/createUser')
 
 
 let mainWindow
+let homeWindow = null
+let usuarioLogado = null
 
 ipcMain.handle('login', async (event, email, password) => {
-    return await login(email, password); 
+
+    const user = await login(email, password)
+    if (user) {
+        usuarioLogado = user
+        return true
+    }
+    return false;
 });
+
+ipcMain.handle('get-usuario-logado', () => {
+    return usuarioLogado
+})
 
 ipcMain.handle('cadastrar-usuario', async (event, dados) => {
     const { nome, email, password, nivel } = dados;
     return await createUser(nome, password, email, nivel);
 });
 
+ipcMain.on('logout', () => {
+        usuarioLogado = null;
+        if (homeWindow) {
+            homeWindow.close();
+            homeWindow = null; // Garante que a referência é limpa
+        }
+        if (!mainWindow) {
+            createWindow();
+        }
+    });
+
 
 function createWindow() {
     mainWindow = new BrowserWindow({
+        /*fullscreen: true,*/
         width: 800,
         height: 600,
         webPreferences: {
@@ -31,6 +55,8 @@ function createWindow() {
 
     mainWindow.loadFile('index.html');
 
+    mainWindow.maximize();
+
     mainWindow.on('closed', () => {
         mainWindow = null
     });
@@ -38,9 +64,10 @@ function createWindow() {
 
 
 function abrirNovaJanela() {
-    const homeWindow = new BrowserWindow({
-        width: 600,
-        height: 400,
+    homeWindow = new BrowserWindow({
+        /*fullscreen: true,*/
+        width: 800,
+        height: 600,
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
@@ -48,7 +75,13 @@ function abrirNovaJanela() {
         }
     });
 
-    homeWindow.loadFile('views/create.html');
+    homeWindow.loadFile('views/home.html');
+    homeWindow.maximize();
+
+    homeWindow.on('closed', () => {
+        homeWindow = null;
+    });
+
 }
 /*
 function abrirCadastro() {
@@ -67,6 +100,10 @@ function abrirCadastro() {
 */
 ipcMain.on('abrir-home', () => {
     abrirNovaJanela();
+
+    if (mainWindow) {
+        mainWindow.close()
+    }
 })
 
 
